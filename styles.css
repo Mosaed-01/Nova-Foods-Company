@@ -1116,40 +1116,164 @@ section {
 .map-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  aspect-ratio: 5/4;
+  max-width: 600px;
+  aspect-ratio: 600 / 380;
+  padding-bottom: 40px;
 }
 .map-glow {
   position: absolute;
-  inset: -50px;
-  background: radial-gradient(circle, rgba(200,16,46,0.15) 0%, transparent 60%);
+  inset: -40px;
+  background: radial-gradient(ellipse at center, rgba(200,16,46,0.18) 0%, transparent 65%);
   border-radius: 50%;
   animation: pulse 4s ease-in-out infinite;
+  z-index: 0;
 }
 .yemen-map {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 20px 40px rgba(200,16,46,0.25));
   position: relative;
   z-index: 2;
+  display: block;
 }
-.map-pin {
-  cursor: pointer;
-  transition: var(--transition);
+
+/* If user provides assets/yemen-map.png, it's used and SVG hides */
+.yemen-map-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  object-fit: contain;
+  display: block;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(13%)
+    sepia(89%)
+    saturate(5500%)
+    hue-rotate(347deg)
+    brightness(95%)
+    contrast(105%)
+    drop-shadow(0 14px 18px rgba(122,0,16,0.45));
 }
-.map-pin:hover { transform: scale(1.3); }
-.pulse {
-  animation: pulsePin 2s ease-in-out infinite;
-  transform-origin: center;
+.yemen-map-img + .yemen-map { display: none; }
+
+/* City Markers */
+.city-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: auto;
 }
-@keyframes pulsePin {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.5); opacity: 0; }
+
+.city-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(245, 184, 0, 0.5);
+  transform: translate(-50%, -50%);
+  animation: cityPulse 2.5s ease-out infinite;
+  z-index: 1;
+}
+@keyframes cityPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.4);
+    opacity: 0;
+  }
+}
+
+.city-dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD86E, #F5B800);
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B0000;
+  font-size: 8px;
+  transition: transform 0.25s ease;
+}
+.city-marker:hover .city-dot {
+  transform: scale(1.2);
+}
+
+.city-marker.capital .city-dot {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+  background: linear-gradient(135deg, #FFD86E, #D4A017);
+  border-width: 3px;
+}
+.city-marker.capital .city-pulse {
+  width: 48px;
+  height: 48px;
+  background: rgba(245, 184, 0, 0.55);
+}
+
+.city-label {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%);
+  background: rgba(20, 14, 10, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #F5EFE0;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  border: 1px solid rgba(245, 184, 0, 0.5);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  z-index: 4;
+  font-family: var(--font-body);
+}
+
+.city-marker.capital .city-label {
+  background: linear-gradient(135deg, #F5B800, #D4A017);
+  color: #1A0F08;
+  font-size: 13px;
+  font-weight: 800;
+  border-color: rgba(255,255,255,0.7);
+  padding: 7px 16px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 18px rgba(245,184,0,0.45);
+}
+
+/* Label position variants */
+.city-label.label-left {
+  left: auto;
+  right: calc(100% + 10px);
+}
+.city-label.label-below {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.city-label.label-above {
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .map-label {
   position: absolute;
-  bottom: -20px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   background: var(--white);
@@ -1161,9 +1285,10 @@ section {
   box-shadow: var(--shadow-lg);
   font-weight: 600;
   color: var(--dark);
-  z-index: 3;
+  z-index: 6;
   font-size: 14px;
   white-space: nowrap;
+  border: 1px solid rgba(200,16,46,0.1);
 }
 .map-label i {
   color: var(--primary);
@@ -1883,6 +2008,12 @@ body.rtl .scroll-text {
 
   .market-highlights { grid-template-columns: 1fr; gap: 16px; }
   .values-row { gap: 16px; padding: 24px; }
+
+  .city-label { font-size: 10px; padding: 4px 10px; }
+  .city-marker.capital .city-label { font-size: 11px; padding: 5px 12px; }
+  .city-dot { width: 11px; height: 11px; }
+  .city-marker.capital .city-dot { width: 20px; height: 20px; }
+  .map-label { font-size: 12px; padding: 10px 20px; }
 
   .whatsapp-float { width: 50px; height: 50px; font-size: 24px; }
 }
