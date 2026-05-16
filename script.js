@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = document.getElementById('message').value;
 
       const subjectLine = `Inquiry from ${name} (${company}) — ${subject}`;
-      const body = `Name: ${name}%0D%0ACompany: ${company}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0ASubject: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+      const bodyText = `Name: ${name}\nCompany: ${company}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\n\nMessage:\n${message}`;
 
       // Open user's email client
-      window.location.href = `mailto:nova.foods10@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${body}`;
+      window.location.href = `mailto:nova.foods10@gmail.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(bodyText)}`;
 
       formSuccess.classList.add('show');
       contactForm.reset();
