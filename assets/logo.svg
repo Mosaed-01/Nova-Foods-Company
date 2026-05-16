@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 380" width="500" height="380">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="50%" stop-color="#C8102E"/>
+      <stop offset="100%" stop-color="#8B0000"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD86E"/>
+      <stop offset="50%" stop-color="#F5B800"/>
+      <stop offset="100%" stop-color="#D4A017"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Wheat Stalks -->
+  <g filter="url(#shadow)">
+    <!-- Center wheat stalk -->
+    <g transform="translate(250, 30)">
+      <ellipse cx="0" cy="20" rx="6" ry="12" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="30" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="30" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="-9" cy="44" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="9" cy="44" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="-9" cy="58" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="9" cy="58" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="72" rx="5" ry="9" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="72" rx="5" ry="9" fill="url(#goldGrad)"/>
+      <rect x="-1.5" y="20" width="3" height="65" fill="#D4A017"/>
+    </g>
+
+    <!-- Left wheat stalk -->
+    <g transform="translate(215, 50) rotate(-15)">
+      <ellipse cx="0" cy="15" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="-6" cy="24" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="6" cy="24" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="36" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="36" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="48" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="48" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <rect x="-1" y="15" width="2" height="50" fill="#D4A017"/>
+    </g>
+
+    <!-- Right wheat stalk -->
+    <g transform="translate(285, 50) rotate(15)">
+      <ellipse cx="0" cy="15" rx="5" ry="10" fill="url(#goldGrad)"/>
+      <ellipse cx="-6" cy="24" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="6" cy="24" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="36" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="36" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="-7" cy="48" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <ellipse cx="7" cy="48" rx="4" ry="8" fill="url(#goldGrad)"/>
+      <rect x="-1" y="15" width="2" height="50" fill="#D4A017"/>
+    </g>
+
+    <!-- Decorative arcs under wheat -->
+    <path d="M 130 145 Q 250 100 370 145" stroke="url(#goldGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Red Banner -->
+  <g filter="url(#shadow)">
+    <path d="M 80 160
+             L 90 145
+             L 120 150
+             L 380 150
+             L 410 145
+             L 420 160
+             L 415 270
+             L 425 285
+             L 410 280
+             L 380 275
+             L 380 290
+             L 360 280
+             L 140 280
+             L 120 290
+             L 120 275
+             L 90 280
+             L 75 285
+             L 85 270
+             Z"
+          fill="url(#redGrad)"
+          stroke="url(#goldGrad)"
+          stroke-width="4"
+          stroke-linejoin="round"/>
+  </g>
+
+  <!-- Nova Text -->
+  <text x="250" y="245"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="92"
+        font-weight="900"
+        fill="#FFFFFF"
+        text-anchor="middle"
+        font-style="italic">Nova</text>
+
+  <!-- FOODS Text -->
+  <text x="250" y="320"
+        font-family="Arial, sans-serif"
+        font-size="34"
+        font-weight="700"
+        fill="url(#goldGrad)"
+        text-anchor="middle"
+        letter-spacing="8">FOODS</text>
+</svg>
